@@ -10,11 +10,11 @@
 Clone the repository, install the necessary dependencies, and then run the application.
 
 ```bash
-git clone https://github.com/aryamankha/airbnb-clone.git
+git clone https://github.com/joyreuben/rest-countries-api.git
 npm install
 npm run dev
 # or
-git clone https://github.com/aryamankha/airbnb-clone.git
+git clone https://github.com/joyreuben/rest-countries-api.git
 yarn
 yarn dev
 ```
