@@ -3,8 +3,13 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 
-const url = "https://restcountries.com/v2/all"
+let url = "https://restcountries.com/v2/all"
 
+const queryParams = new URLSearchParams(window.location.search)
+const term = queryParams.get("region")
+if (term) {
+    url = `https://restcountries.com/v2/region/${term}`
+}
 const Countries = () => {
 
     const [countries, setCountries] =useState([])
