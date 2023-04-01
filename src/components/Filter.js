@@ -1,19 +1,12 @@
 /** @jsxImportSource theme-ui */
 
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 
 import Countries from "./Countries";
 
 function Filter() {
-    const queryParams = new URLSearchParams(window.location.search)
-    const term = queryParams.get("region")
     const [region, setRegion] = useState('')
-
     const [search, setSearch] = useState('')
-
-    useEffect(() => {
-        if (region) window.location.href = `?region=${region}`
-    }, [region])
 
     return (
         <>
@@ -31,9 +24,8 @@ function Filter() {
                 <div className="region-filter">
                     <select name="select" id='select' className='select' onChange={(e) => {
                         setRegion(e.target.value)
-                    }} defaultValue={term}
-                            sx={{backgroundColor: "headerBackground", color: "color"}}>
-                        <option value=" ">All</option>
+                    }} sx={{backgroundColor: "headerBackground", color: "color"}}>
+                        <option value="">All</option>
                         <option value="Africa">Africa</option>
                         <option value="Asia">Asia</option>
                         <option value="Europe">Europe</option>
@@ -41,7 +33,7 @@ function Filter() {
                     </select>
                 </div>
             </section>
-            <Countries search={search}/>
+            <Countries search={search} region={region}/>
         </>
     )
 }

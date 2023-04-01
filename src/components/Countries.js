@@ -17,18 +17,27 @@ const fetchData = async (url) => {
 }
 
 const Countries = (props) => {
-    const [search, setSearch] = useState('')
     const [countries, setCountries] = useState([])
 
-    useEffect(() => {
-        setSearch(props.search)
-        props.search === '' && fetchData(url).then((countries) => {
+    const initial = () => {
+        fetchData(url).then((countries) => {
             setCountries(countries)
         })
+    }
+
+    useEffect(() => {
+        props.search === '' && initial()  // TODO this can be improved
         props.search && fetchData(`https://restcountries.com/v2/name/${props.search}`).then((countries) => {
             setCountries(countries)
         })
     }, [props.search])
+
+    useEffect(() => {
+        props.region === '' && initial()  // TODO this can be improved
+        props.region && fetchData(`https://restcountries.com/v2/region/${props.region}`).then((countries) => {
+            setCountries(countries)
+        })
+    }, [props.region])
 
     return (
         <>
